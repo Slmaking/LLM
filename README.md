@@ -80,8 +80,7 @@ This dataset contains location data, including latitude, longitude, height, velo
 
 ## License
 
-[Your Project Name] is licensed under the [name of the license].
+LLM is licensed under the MIT.
 
 ---
 
-This README serves as a template and should be customized according to the specific details, results, and peculiarities of your project. If you have any specific sections or information you'd like to include, please let me know!
