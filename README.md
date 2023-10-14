@@ -23,18 +23,18 @@ GPT-2, developed by OpenAI, is a large-scale unsupervised language model which c
 
 ### Prerequisites
 
-- Python 3.x
+- Python 3.5
 - Pip
 
 ### Installation Steps
 
 1. **Clone the Repository:**
    ```
-   git clone [your-repository-link]
+   git clone [https://github.com/Slmaking/LLM]
    ```
 2. **Navigate to the Repository:**
    ```
-   cd [your-repository-name]
+   cd [LLM]
    ```
 3. **Install Dependencies:**
    ```
