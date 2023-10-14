@@ -3,11 +3,11 @@
 
 ---
 
-# Project Title: Large Language Model
+# Project Title: Large Language Model test
 
 ## Overview
 
-This project leverages the GPT-2, a state-of-the-art text generation model, in conjunction with a Location-based Learning Model (LLM) to [briefly describe what the project does]. GPT-2 is utilized for [describe functionality], while LLM is used to [describe functionality].
+This project leverages the GPT-2, a state-of-the-art text generation model, in conjunction with a Location-based Learning Model (LLM) to testing various language model with GPT. GPT-2 is utilized for benchmark.
 
 ## Models Overview
 
