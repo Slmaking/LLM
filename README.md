@@ -17,8 +17,9 @@ GPT-2, developed by OpenAI, is a large-scale unsupervised language model which c
 
 ### Location-based Learning Model (LLM)
 
-[Provide a brief overview of LLM, its functionality, and how it is utilized in the project. If LLM refers to something different, please provide details.]
+This code will load the GPT-2 model, encode an input prompt ("Once upon a time"), generate text based on that prompt, and then print the generated text. You can change the parameters like max_length, num_return_sequences, and temperature to adjust the length, number of generated sequences, and randomness of the generated text, respectively.
 
+LLM is a type of neural network model specifically designed to handle tasks related to natural language processing (NLP). It is trained on vast amounts of text data to understand and generate human-like text. The LLM is a part of the transformer architecture family, which has revolutionized the field of NLP.
 ## Installation and Setup
 
 ### Prerequisites
