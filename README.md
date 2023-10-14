@@ -60,11 +60,10 @@ This dataset contains location data, including latitude, longitude, height, velo
 
 ### Text Generation with GPT-2
 
-[Describe how GPT-2 is used within the project, including any customization or fine-tuning performed.]
+Domain-specific Training: If the project has a specific domain (e.g., medical, legal, technical), GPT-2 can be fine-tuned on domain-specific datasets to enhance its performance in that area.
+Controlled Output: Modifications can be made to control the randomness, length, or other aspects of the generated text using parameters like temperature and max_length.
+Task-specific Training: For specific tasks like classification, GPT-2 can be fine-tuned on labeled datasets to adapt its behavior.
 
-### Location Data Analysis with LLM
-
-[Describe how LLM is used to analyze or interact with the location data, and any resultant interactions with GPT-2.]
 
 ## Results
 
