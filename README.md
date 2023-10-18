@@ -50,11 +50,10 @@ LLM is a type of neural network model specifically designed to handle tasks rela
 
 ### Location.csv
 
-This dataset contains location data, including latitude, longitude, height, velocity, and directional measurements at various timestamps. [Add any additional context or details about the dataset.]
+This dataset contains location data, including latitude, longitude, height, velocity, and directional measurements at various timestamps. [
 
 ### Text Data
 
-[Describe any text data used in conjunction with GPT-2, including its format and how it is utilized within the project.]
 
 ## Functionality
 
@@ -67,11 +66,9 @@ Task-specific Training: For specific tasks like classification, GPT-2 can be fin
 
 ## Results
 
-[Describe any results, findings, or generated outputs from the project.]
 
 ## Visualizations
 
-[If applicable, describe or embed any visualizations generated during the project.]
 
 ## Acknowledgements
 
