@@ -33,29 +33,8 @@ LLM is a type of neural network model specifically designed to handle tasks rela
    ```
    git clone [https://github.com/Slmaking/LLM]
    ```
-2. **Navigate to the Repository:**
-   ```
-   cd [LLM]
-   ```
-3. **Install Dependencies:**
-   ```
-   pip install -r requirements.txt
-   ```
-   
-### Usage
 
-[Provide a step-by-step guide on how to use the project, including code snippets and usage examples.]
-
-## Data
-
-### Location.csv
-
-This dataset contains location data, including latitude, longitude, height, velocity, and directional measurements at various timestamps. [
-
-### Text Data
-
-
-## Functionality
+This dataset contains location data, including latitude, longitude, height, velocity, and directional measurements at various timestamps. 
 
 ### Text Generation with GPT-2
 
@@ -64,16 +43,7 @@ Controlled Output: Modifications can be made to control the randomness, length, 
 Task-specific Training: For specific tasks like classification, GPT-2 can be fine-tuned on labeled datasets to adapt its behavior.
 
 
-## Results
 
-
-## Visualizations
-
-
-## Acknowledgements
-
-- OpenAI for GPT-2
-- [Any other acknowledgements]
 
 ## License
 
