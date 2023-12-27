@@ -187,20 +187,118 @@ class PersonalizedWebResearch(WebResearchRetriever):
 
     def search_tool(self, query: str, num_search_results: int = 1) -> List[dict]:
         """
-        Perform a Google search and return the results.
+        Perform a Google search and return a specified number of results.
 
         Args:
             query: The search query.
             num_search_results: The number of search results to return.
 
         Returns:
-            A list of search results.
+            A list of dictionaries, each representing a search result.
         """
-        # Method to perform a Google search using the provided query.
-
+        # Clean the query to ensure it's in a format suitable for Google Search.
         query_clean = self.clean_search_query(query)
+        # Perform the search using the cleaned query and specified number of results.
         result = self.search.results(query_clean, num_search_results)
         return result
-        # Return the search results.
+
+    def _get_relevant_documents(
+        self,
+        query: str,
+        *,
+        run_manager: CallbackManagerForRetrieverRun,
+    ) -> List[Document]:
+        """
+        Retrieve documents relevant to the user's query using Google Search.
+
+        Args:
+            query: The user's query.
+            run_manager: A manager for handling callbacks during the retrieval run.
+
+        Returns:
+            A list of Document objects, each representing a relevant document.
+        """
+        # Log the start of the question generation process.
+        logger.info("Generating questions for Google Search ...")
+        # Split the query for personalization.
+        parts = query.split('$$$')
+        # Generate search questions using the LLM chain.
+        result = self.llm_chain({"question": parts[0], "specialty": parts[1]})
+        query = parts[0]
+        # Log the raw questions generated.
+        logger.info(f"Questions for Google Search (raw): {result}")
+        # Extract the lines (questions) from the result.
+        questions = getattr(result["text"], "lines", [])
+        # Log the extracted questions.
+        logger.info(f"Questions for Google Search: {questions}")
+
+        # Begin searching for relevant URLs.
+        logger.info("Searching for relevant urls...")
+        urls_to_look = []
+        for query in questions:
+            # Perform Google search for each generated question.
+            search_results = self.search_tool(query, self.num_search_results)
+            logger.info("Searching for relevant urls...")
+            logger.info(f"Search results: {search_results}")
+            # Collect the links from the search results.
+            for res in search_results:
+                if res.get("link", None):
+                    urls_to_look.append(res["link"])
+
+        # Deduplicate the URLs.
+        urls = set(urls_to_look)
+
+        # Determine new URLs that haven't been processed before.
+        new_urls = list(urls.difference(self.url_database))
+        logger.info(f"New URLs to load: {new_urls}")
+
+        # Load, transform, and split new URLs for indexing.
+        if new_urls:
+            loader = AsyncHtmlLoader(new_urls)
+            html2text = Html2TextTransformer()
+            logger.info("Indexing new urls...")
+            docs = loader.load()
+            docs = list(html2text.transform_documents(docs))
+            docs = self.text_splitter.split_documents(docs)
+            # Add the processed documents to the vector store.
+            self.vectorstore.add_documents(docs)
+            # Update the URL database with the new URLs.
+            self.url_database.extend(new_urls)
+
+        # Retrieve the most relevant document splits based on the search questions.
+        logger.info("Grabbing most relevant splits from urls...")
+        docs = []
+        for query in questions:
+            docs.extend(self.vectorstore.similarity_search(query))
+
+        # Deduplicate the documents based on content and metadata.
+        unique_documents_dict = {
+            (doc.page_content, tuple(sorted(doc.metadata.items()))): doc for doc in docs
+        }
+        unique_documents = list(unique_documents_dict.values())
+        return unique_documents
+
+    async def _aget_relevant_documents(
+        self,
+        query: str,
+        *,
+        run_manager: AsyncCallbackManagerForRetrieverRun,
+    ) -> List[Document]:
+        """
+        Asynchronous method to retrieve relevant documents. (Not implemented)
+
+        Args:
+            query: The user's query.
+            run_manager: A manager for handling callbacks during the retrieval run.
+
+        Returns:
+            A list of Document objects, each representing a relevant document.
+
+        Raises:
+            NotImplementedError: Indicates that the method is not yet implemented.
+        """
+        # Placeholder for future implementation of asynchronous document retrieval.
+        raise NotImplementedError
+
 
       
