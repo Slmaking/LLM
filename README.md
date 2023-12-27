@@ -1,53 +1,45 @@
 # LLM
 
-
+## Large Language Model
 ---
 
-# Project Title: Large Language Model test
+This code defines a personalized web research retriever using the LangChain library, which is designed to facilitate the creation of language model-based applications. The code is structured to perform specialized Google searches based on user queries and personalization criteria. Here's a breakdown of the key components and functionalities:
 
-## Overview
+1. **Imports and Logger Setup:**
+   - Essential modules and classes are imported from `langchain` and other libraries.
+   - A logger is set up for logging information during the execution.
 
-This project leverages the GPT-2, a state-of-the-art text generation model, in conjunction with a Location-based Learning Model (LLM) to testing various language model with GPT. GPT-2 is utilized for benchmark.
+2. **Model Definitions:**
+   - `SearchQueries`: A Pydantic model for handling search queries.
+   - `LineList`: A Pydantic model for handling a list of questions.
+   - `QuestionListOutputParser`: A parser class for processing output into a list of questions.
 
-## Models Overview
+3. **Prompt Templates:**
+   - `DEFAULT_LLAMA_SEARCH_PROMPT` and `DEFAULT_SEARCH_PROMPT`: These are templates for generating search queries. They are designed to instruct the language model to create Google search queries based on a given question and specialty.
 
-### GPT-2
+4. **Personalization in Prompt:**
+   - `process_personalization_in_prompt`: A function to process personalization in the prompt. It modifies the prompt template based on the user's query, particularly the specialty part.
 
-GPT-2, developed by OpenAI, is a large-scale unsupervised language model which can generate coherent paragraphs of text. It excels at a range of natural language processing (NLP) tasks, including text generation, summarization, and translation, among others.
+5. **PersonalizedWebResearch Class:**
+   - This class extends `WebResearchRetriever` and is tailored for personalized web research.
+   - It includes methods for setting up the retriever, cleaning search queries, performing searches, and retrieving relevant documents.
+   - The class uses a combination of a language model (`llm_chain`) and Google Search API (`search`) to generate and execute search queries.
+   - The `set_personalization_profile` class method allows setting a personalization profile.
+   - The `from_llm` class method is a factory method for creating an instance of `PersonalizedWebResearch` from a language model.
+   - The `clean_search_query` method cleans up the search query to ensure compatibility with search engines.
+   - The `_get_relevant_documents` method generates search queries and retrieves relevant documents from the web.
+   - The `aget_relevant_documents` method is an asynchronous placeholder for future implementation.
 
-### Location-based Learning Model (LLM)
+6. **Comments and Logging:**
+   - Throughout the code, there are logging statements to track the progress and actions, which is helpful for debugging and monitoring.
 
-This code will load the GPT-2 model, encode an input prompt ("Once upon a time"), generate text based on that prompt, and then print the generated text. You can change the parameters like max_length, num_return_sequences, and temperature to adjust the length, number of generated sequences, and randomness of the generated text, respectively.
+7. **TODO and NotImplementedError:**
+   - The `aget_relevant_documents` method is not implemented and marked with a `NotImplementedError`. This indicates a planned feature for asynchronous document retrieval.
 
-LLM is a type of neural network model specifically designed to handle tasks related to natural language processing (NLP). It is trained on vast amounts of text data to understand and generate human-like text. The LLM is a part of the transformer architecture family, which has revolutionized the field of NLP.
-## Installation and Setup
+8. **Potential Improvements and Considerations:**
+   - Error handling: The code could benefit from more robust error handling, especially in network requests and parsing operations.
+   - Asynchronous functionality: Implementing the `aget_relevant_documents` method would enhance performance, especially when dealing with multiple web requests.
+   - Personalization: The personalization aspect is primarily focused on modifying the search queries. Further personalization could be implemented in the retrieval and processing of documents.
 
-### Prerequisites
-
-- Python 3.5
-- Pip
-
-### Installation Steps
-
-1. **Clone the Repository:**
-   ```
-   git clone [https://github.com/Slmaking/LLM]
-   ```
-
-This dataset contains location data, including latitude, longitude, height, velocity, and directional measurements at various timestamps. 
-
-### Text Generation with GPT-2
-
-Domain-specific Training: If the project has a specific domain (e.g., medical, legal, technical), GPT-2 can be fine-tuned on domain-specific datasets to enhance its performance in that area.
-Controlled Output: Modifications can be made to control the randomness, length, or other aspects of the generated text using parameters like temperature and max_length.
-Task-specific Training: For specific tasks like classification, GPT-2 can be fine-tuned on labeled datasets to adapt its behavior.
-
-
-
-
-## License
-
-LLM is licensed under the MIT.
-
----
+Overall, the code is structured to integrate language model capabilities with web search functionalities, providing a foundation for building advanced information retrieval systems that can be personalized to user preferences and queries.
 
